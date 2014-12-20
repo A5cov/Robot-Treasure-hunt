@@ -1,0 +1,105 @@
+import time
+from Tkinter import *
+import random
+window = Tk()
+window.title("Robot Treasure Hunt")
+canvas = Canvas(window, width=1000, height=800, bg='white')
+canvas.pack()
+
+
+#Insert the images later because everyone will have to have the files on their computer under the same directory name.
+Desert = 0      #Insert image here
+City = 0        #Insert Image here
+Snow = 0        #Insert Image here
+
+
+#Map
+canvas.create_line(333,800,333,0,fill="black",width=1)
+canvas.create_line(666,800,666,0,fill="black",width=1)
+
+#Change "white" to the variable names (then delete this line)
+#Desert
+canvas.create_rectangle(0,810,333,0, fill="white")
+
+#City
+canvas.create_rectangle(333,810,666,0, fill="white")
+
+#Snow
+canvas.create_rectangle(666,810,1010,0, fill="white")
+
+
+#Robot
+robot=canvas.create_rectangle(40,30,60,50,fill="lightblue",outline="blue")
+
+
+xx = random.choice(["red", "green"])
+if xx == "red":
+    x1 = "darkred"
+else:
+    x1 = "darkgreen"
+xy = random.choice(["red", "green"])
+if xy == "red":
+    x2 = "darkred"
+else:
+    x2 = "darkgreen"
+xz = random.choice(["red", "green"])
+if xz == "red":
+    x3 = "darkred"
+else:
+    x3 = "darkgreen"
+canvas.update()
+
+
+#Lights
+light1 = canvas.create_rectangle(141,390,161,410, fill=xx, outline=x1)
+light2 = canvas.create_rectangle(441,390,461,410, fill=xy, outline=x2)
+light3 = canvas.create_rectangle(741,390,761,410, fill=xz, outline=x3)
+
+
+#A suggestion is that the landmarks (a blakc dot/circle)
+#can be changed to the actual outlines or images of the landmarks. Distinguishable.
+
+class Pyramid:
+    name = "Pyramid"
+    id = 0001
+    pyramid = canvas.create_oval(100,110,120,130, fill="black")
+    def pyrTreasure():
+        hasTreasure = True #Can be changed
+        
+class Sphinx:
+    name = "Sphinx"
+    id = 0002
+    Sphinx = canvas.create_oval(150,560,170,580, fill="black")
+    def SphinxTreasure():
+        hasTreasure = True #Can be changed
+
+class LondonEye:
+    name = "LondonEye"
+    id = 0003
+    LondonEye = canvas.create_oval(400,210,420,230, fill="black")
+    def EyeTreasure():
+        hasTreasure = True #Can be changed
+
+class StatueOfLiberty:
+    name = "StatueOfLiberty"
+    id = 0004
+    StatueOfLiberty = canvas.create_oval(600,510,620,530, fill="black")
+    def LibertyTreasure():
+        hasTreasure = True #Can be changed
+
+class NorthPole:
+    name = "NorthPole"
+    id = 0005
+    NorthPole = canvas.create_oval(900,110,920,130, fill="black")
+    def PoleTreasure():
+        hasTreasure = True #Can be changed
+
+class MountEverest:
+    name = "MountEverest"
+    id = 0006
+    MountEverest = canvas.create_oval(800,710,820,730, fill="black")
+    def EverestTreasure():
+        hasTreasure = True #Can be changed
+
+        
+window.mainloop()
