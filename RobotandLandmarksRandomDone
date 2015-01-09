@@ -1,0 +1,93 @@
+import time
+import random
+from random import randint
+from Tkinter import*
+
+class landmarks:
+    def __init__(self, name, id, treasure, x1, x2, y1, y2):
+        self.name = name
+        self.id = id
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def location(self, x1, y1, x2, y2):
+        x1 = x1 + randint(0,590)
+        x2 = x1 + 10
+        y1 = randint(0,790)
+        y2 = y1 + 10
+        canvas.create_rectangle(x1,y1,x2,y2,fill="yellow",outline="black")
+        canvas.update()
+
+class robots:
+    def __init__(self, name, treasure, x1, x2, y1, y2):
+        self.name = name
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateRobot(self, x1, y1, x2, y2):
+        x1 = randint(0, 1780)
+        x2 = x1 + 20
+        y1 = randint(0, 780)
+        y2 = y1 + 20      
+        canvas.create_rectangle(x1,y1,x2,y2,fill="blue",outline="black")
+        canvas.update()
+
+
+Phil = robots("Phil", 0, 0, 0, 0, 0)
+Sebastion = robots("Sebastion", 0, 0, 0, 0, 0)
+Pyramid = landmarks("Pyramid", 1, "false", 0, 0, 0, 0)
+Sphinx = landmarks("Sphinx", 2, "false", 0, 0, 0, 0)
+ValleyoftheKings = landmarks("Valley of the Kings", 3, "false", 0, 0, 0, 0)
+LondonEye = landmarks("London Eye", 4, "false", 0, 0, 0, 0)
+StatueofLiberty = landmarks("Statue of Liberty", 5, "false", 0, 0, 0, 0)
+EiffelTower = landmarks("Eiffel Tower", 6, "false", 0, 0, 0, 0)
+NorthPole = landmarks("North Pole", 7, "false", 0, 0, 0, 0)
+MountEverest = landmarks("Mount Everest", 8, "false", 0, 0, 0, 0)
+StBasilsCathedral = landmarks("St.Basil's Cathedral", 9, "false", 0, 0, 0, 0)
+
+window = Tk()
+canvas = Canvas(window, width=1800, height=800, bg='white')
+canvas.pack()
+
+Phil.CreateRobot(0,0,0,0)
+Sebastion.CreateRobot(0,0,0,0)
+Pyramid.location(0,0,0,0)
+Sphinx.location(0,0,0,0)
+ValleyoftheKings.location(0,0,0,0)
+LondonEye.location(600,0,0,0)
+StatueofLiberty.location(600,0,0,0)
+EiffelTower.location(600,0,0,0)
+NorthPole.location(1200,0,0,0)
+MountEverest.location(1200,0,0,0)
+StBasilsCathedral.location(1200,0,0,0)
+
+randomtreasures = []
+for x in range(0, 4):
+    y = randint(1, 9)
+    randomtreasures.append(y)
+
+for x in range(0, 4):
+    if randomtreasures[x] == Pyramid.id:
+        Pyramid.treasure = "true"
+    elif randomtreasures[x] == Sphinx.id:
+        Sphinx.treasure = "true"
+    elif randomtreasures[x] == ValleyoftheKings.id:
+        ValleyoftheKings.treasure = "true"
+    elif randomtreasures[x] == LondonEye.id:
+        LondonEye.treasure = "true"
+    elif randomtreasures[x] == StatueofLiberty.id:
+        StatueofLiberty.treasure = "true"
+    elif randomtreasures[x] == EiffelTower.id:
+        EiffelTower.treasure = "true"
+    elif randomtreasures[x] == NorthPole.id:
+        NorthPole.treasure = "true"
+    elif randomtreasures[x] == MountEverest.id:
+        MountEverest.treasure = "true"
+    elif randomtreasures[x] == StBasilsCathedral.id:
+        StBasilsCathedral.treasure = "true"
+
+window.mainloop()
