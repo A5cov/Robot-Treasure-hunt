@@ -1,0 +1,162 @@
+import time
+import random
+from random import randint
+from Tkinter import*
+import io
+import base64
+import Tkinter as tk
+from urllib2 import urlopen
+
+class landmarks:
+    def __init__(self, name, id, treasure, x1, x2, y1, y2):
+        self.name = name
+        self.id = id
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def location(self, x1, y1, x2, y2):
+        x1 = x1 + randint(0,590)
+        x2 = x1 + 10
+        y1 = randint(0,790)
+        y2 = y1 + 10
+        canvas.create_rectangle(x1,y1,x2,y2,fill="yellow",outline="black")
+        canvas.update()
+
+class robots:
+    def __init__(self, name, treasure, x1, x2, y1, y2):
+        self.name = name
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateRobot(self, x1, y1, x2, y2):
+        x1 = randint(0, 1780)
+        x2 = x1 + 20
+        y1 = randint(0, 780)
+        y2 = y1 + 20      
+        canvas.create_rectangle(x1,y1,x2,y2,fill="blue",outline="black")
+        canvas.update()
+
+class lights:
+    def __init__(self, name, colour, x1, x2, y1, y2):
+        self.name = name
+        self.colour = colour
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateLight(self, x1, y1, x2, y2, colour):
+        canvas.create_rectangle(x1,y1,x2,y2,fill=colour,outline=colour)
+
+LightOne = lights("LightOne", "Green", 0, 0, 0, 0)
+LightTwo = lights("LightTwo", "Green", 0, 0, 0, 0)
+LightThree = lights("LightThree", "Green", 0, 0, 0, 0)
+Phil = robots("Phil", 0, 0, 0, 0, 0)
+Sebastion = robots("Sebastion", 0, 0, 0, 0, 0)
+Pyramid = landmarks("Pyramid", 1, "false", 0, 0, 0, 0)
+Sphinx = landmarks("Sphinx", 2, "false", 0, 0, 0, 0)
+ValleyoftheKings = landmarks("Valley of the Kings", 3, "false", 0, 0, 0, 0)
+LondonEye = landmarks("London Eye", 4, "false", 0, 0, 0, 0)
+StatueofLiberty = landmarks("Statue of Liberty", 5, "false", 0, 0, 0, 0)
+EiffelTower = landmarks("Eiffel Tower", 6, "false", 0, 0, 0, 0)
+NorthPole = landmarks("North Pole", 7, "false", 0, 0, 0, 0)
+MountEverest = landmarks("Mount Everest", 8, "false", 0, 0, 0, 0)
+StBasilsCathedral = landmarks("St.Basil's Cathedral", 9, "false", 0, 0, 0, 0)
+
+window = Tk()
+canvas = Canvas(window, width=1800, height=800, bg='white')
+canvas.pack()
+
+#Desert
+image_urldesert = "http://i.imgur.com/8Ui3Nn2.gif"
+image_bytdesert = urlopen(image_urldesert).read()
+image_b64desert = base64.encodestring(image_bytdesert)
+desert = tk.PhotoImage(data=image_b64desert)
+# City
+image_urlcity = "http://i.imgur.com/X6xnrbm.gif"
+image_bytcity = urlopen(image_urlcity).read()
+image_b64city = base64.encodestring(image_bytcity)
+city = tk.PhotoImage(data=image_b64city)
+#Snow
+image_urlsnow = "http://i.imgur.com/2ICSPuc.gif"
+image_bytsnow = urlopen(image_urlsnow).read()
+image_b64snow = base64.encodestring(image_bytsnow)
+snow = tk.PhotoImage(data=image_b64snow)
+
+# put the image on the canvas with
+# create_image(xpos, ypos, image, anchor)
+
+canvas.create_line(600,800,600,0,fill="black",width=1)
+canvas.create_line(1200,800,1200,0,fill="black",width=1)
+
+canvas.create_image(0,0, image=desert, anchor=NW)
+canvas.create_image(600,0, image=city, anchor=NW)
+canvas.create_image(1200,0, image=snow, anchor=NW)
+
+canvas.update()
+
+colour = "Green"
+
+
+    
+LightOne.CreateLight(280,380,320,420,colour)
+LightTwo.CreateLight(880,380,920,420,colour)
+LightThree.CreateLight(1480,380,1520,420,colour)
+Phil.CreateRobot(0,0,0,0)
+#Sebastion.CreateRobot(0,0,0,0)
+Pyramid.location(0,0,0,0)
+Sphinx.location(0,0,0,0)
+ValleyoftheKings.location(0,0,0,0)
+LondonEye.location(600,0,0,0)
+StatueofLiberty.location(600,0,0,0)
+EiffelTower.location(600,0,0,0)
+NorthPole.location(1200,0,0,0)
+MountEverest.location(1200,0,0,0)
+StBasilsCathedral.location(1200,0,0,0)
+
+for y in range(1,50):
+    x = random.choice(['red', 'green'])
+    LightOne.CreateLight(280,380,320,420,x)
+    LightTwo.CreateLight(880,380,920,420,x)
+    LightThree.CreateLight(1480,380,1520,420,x)
+    canvas.update()
+    time.sleep(1.0)
+    
+    while x == 'red':
+                time.sleep(1.0)
+                x = random.choice(['red', 'green'])
+                LightOne.CreateLight(280,380,320,420,x)
+                LightTwo.CreateLight(880,380,920,420,x)
+                LightThree.CreateLight(1480,380,1520,420,x)
+                canvas.update()
+
+
+randomtreasures = []
+for x in range(0, 4):
+    y = randint(1, 9)
+    randomtreasures.append(y)
+
+for x in range(0, 4):
+    if randomtreasures[x] == Pyramid.id:
+        Pyramid.treasure = "true"
+    elif randomtreasures[x] == Sphinx.id:
+        Sphinx.treasure = "true"
+    elif randomtreasures[x] == ValleyoftheKings.id:
+        ValleyoftheKings.treasure = "true"
+    elif randomtreasures[x] == LondonEye.id:
+        LondonEye.treasure = "true"
+    elif randomtreasures[x] == StatueofLiberty.id:
+        StatueofLiberty.treasure = "true"
+    elif randomtreasures[x] == EiffelTower.id:
+        EiffelTower.treasure = "true"
+    elif randomtreasures[x] == NorthPole.id:
+        NorthPole.treasure = "true"
+    elif randomtreasures[x] == MountEverest.id:
+        MountEverest.treasure = "true"
+    elif randomtreasures[x] == StBasilsCathedral.id:
+        StBasilsCathedral.treasure = "true"
+
+window.mainloop()
