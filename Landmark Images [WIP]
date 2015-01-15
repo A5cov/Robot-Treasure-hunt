@@ -1,0 +1,218 @@
+#Library
+import time
+import random
+from random import randint
+from Tkinter import*
+import io
+import base64
+import Tkinter as tk
+from urllib2 import urlopen
+
+#Classes
+class landmarks:
+    def __init__(self, name, id, treasure, x1, x2, y1, y2, picture):
+        self.name = name
+        self.id = id
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        self.picture = picture
+    def location(self, x1, y1, x2, y2, picture):
+        x1 = x1 + randint(0,590)
+        x2 = x1 + 20
+        y1 = randint(0,790)
+        y2 = y1 + 20
+        canvas.create_image(x1,y1,image=picture,anchor=NW)
+        canvas.update()
+
+class robots:
+    def __init__(self, name, treasure, x1, x2, y1, y2):
+        self.name = name
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateRobot(self, x1, y1, x2, y2):
+        x1 = randint(0, 1780)
+        x2 = x1 + 30
+        y1 = randint(0, 780)
+        y2 = y1 + 30  
+        canvas.create_rectangle(x1,y1,x2,y2,fill="blue",outline="black")
+        canvas.update()
+
+class lights:
+    def __init__(self, name, colour, x1, x2, y1, y2):
+        self.name = name
+        self.colour = colour
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateLight(self, x1, y1, x2, y2, colour):
+        canvas.create_rectangle(x1,y1,x2,y2,fill=colour,outline="dark"+colour)
+
+#Window
+window = Tk()
+canvas = Canvas(window, width=1800, height=800, bg='white')
+canvas.pack()
+
+
+#Image Library
+
+#-Pyramid
+image_urlPyramid = "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytPyramid = urlopen(image_urlPyramid).read()
+image_b64Pyramid = base64.encodestring(image_bytPyramid)
+Pyramid1 = tk.PhotoImage(data=image_b64Pyramid)
+
+#-Sphinx
+image_Sphinx= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytSphinx = urlopen(image_Sphinx).read()
+image_b64Sphinx = base64.encodestring(image_bytSphinx)
+Sphinx1 = tk.PhotoImage(data=image_b64Sphinx)
+
+#-ValleyoftheKings
+image_Valley= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytValley = urlopen(image_Valley).read()
+image_b64Valley = base64.encodestring(image_bytValley)
+Valley1 = tk.PhotoImage(data=image_b64Valley)
+
+#-LondonEye
+image_LondonEye= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytLondonEye = urlopen(image_LondonEye).read()
+image_b64LondonEye = base64.encodestring(image_bytLondonEye)
+LondonEye1 = tk.PhotoImage(data=image_b64LondonEye)
+
+#-StatueOfLiberty
+image_Statue = "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytStatue = urlopen(image_Statue).read()
+image_b64Statue = base64.encodestring(image_bytStatue)
+Statue1 = tk.PhotoImage(data=image_b64Statue)
+
+#-Eiffel Tower
+image_Eiffel= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytEiffel = urlopen(image_Eiffel).read()
+image_b64Eiffel = base64.encodestring(image_bytEiffel)
+Eiffel1 = tk.PhotoImage(data=image_b64Eiffel)
+
+#-NorthPole
+image_NorthPole= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytNorthPole = urlopen(image_NorthPole).read()
+image_b64NorthPole = base64.encodestring(image_bytNorthPole)
+NorthPole1 = tk.PhotoImage(data=image_b64NorthPole)
+
+#-MountEverest
+image_Everest= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytEverest = urlopen(image_Everest).read()
+image_b64Everest = base64.encodestring(image_bytEverest)
+Everest1 = tk.PhotoImage(data=image_b64Everest)
+
+#-StBasilsCathedral
+image_Basil= "http://corozal.com/imgs/smiley.10x10.gif"
+image_bytBasil = urlopen(image_Basil).read()
+image_b64Basil = base64.encodestring(image_bytBasil)
+Basil1 = tk.PhotoImage(data=image_b64Basil)
+
+#Lights Data
+LightOne = lights("LightOne", "Green", 0, 0, 0, 0)
+LightTwo = lights("LightTwo", "Green", 0, 0, 0, 0)
+LightThree = lights("LightThree", "Green", 0, 0, 0, 0)
+
+#Robot Data
+Phil = robots("Phil", 0, 0, 0, 0, 0)
+Sebastion = robots("Sebastion", 0, 0, 0, 0, 0)
+
+#Landmark Data
+Pyramid = landmarks("Pyramid", 1, "false", 0, 0, 0, 0,Pyramid1)
+Sphinx = landmarks("Sphinx", 2, "false", 0, 0, 0, 0,Sphinx1)
+ValleyoftheKings = landmarks("Valley of the Kings", 3, "false", 0, 0, 0, 0,Valley1)
+LondonEye = landmarks("London Eye", 4, "false", 0, 0, 0, 0,LondonEye1)
+StatueofLiberty = landmarks("Statue of Liberty", 5, "false", 0, 0, 0, 0,Statue1)
+EiffelTower = landmarks("Eiffel Tower", 6, "false", 0, 0, 0, 0,Eiffel1)
+NorthPole = landmarks("North Pole", 7, "false", 0, 0, 0, 0,NorthPole1)
+MountEverest = landmarks("Mount Everest", 8, "false", 0, 0, 0, 0,Everest1)
+StBasilsCathedral = landmarks("St.Basil's Cathedral", 9, "false", 0, 0, 0, 0,Basil1)
+
+
+#Mapping -
+
+# - Desert
+image_urldesert = "http://i.imgur.com/8Ui3Nn2.gif"
+image_bytdesert = urlopen(image_urldesert).read()
+image_b64desert = base64.encodestring(image_bytdesert)
+desert = tk.PhotoImage(data=image_b64desert)
+# - City
+image_urlcity = "http://i.imgur.com/X6xnrbm.gif"
+image_bytcity = urlopen(image_urlcity).read()
+image_b64city = base64.encodestring(image_bytcity)
+city = tk.PhotoImage(data=image_b64city)
+# - Snow
+image_urlsnow = "http://i.imgur.com/2ICSPuc.gif"
+image_bytsnow = urlopen(image_urlsnow).read()
+image_b64snow = base64.encodestring(image_bytsnow)
+snow = tk.PhotoImage(data=image_b64snow)
+
+
+# - Lines
+canvas.create_line(600,800,600,0,fill="black",width=1)
+canvas.create_line(1200,800,1200,0,fill="black",width=1)
+# - Background
+canvas.create_image(0,0, image=desert, anchor=NW)
+canvas.create_image(600,0, image=city, anchor=NW)
+canvas.create_image(1200,0, image=snow, anchor=NW)
+
+canvas.update()
+
+colour = "Green"
+
+#Physical Lights
+LightOne.CreateLight(280,380,320,420,colour)
+LightTwo.CreateLight(880,380,920,420,colour)
+LightThree.CreateLight(1480,380,1520,420,colour)
+
+#Robots
+Phil.CreateRobot(0,0,0,0)
+Sebastion.CreateRobot(0,0,0,0)
+
+#Physical Landmarks
+Pyramid.location(0,0,0,0,Pyramid1)
+Sphinx.location(0,0,0,0,Sphinx1)
+ValleyoftheKings.location(0,0,0,0,Valley1)
+LondonEye.location(600,0,0,0,LondonEye1)
+StatueofLiberty.location(600,0,0,0,Statue1)
+EiffelTower.location(600,0,0,0,Eiffel1)
+NorthPole.location(1200,0,0,0,NorthPole1)
+MountEverest.location(1200,0,0,0,Everest1)
+StBasilsCathedral.location(1200,0,0,0,Basil1)
+
+canvas.update()
+
+randomtreasures = []
+for x in range(0, 4):
+    y = randint(1, 9)
+    randomtreasures.append(y)
+
+for x in range(0, 4):
+    if randomtreasures[x] == Pyramid.id:
+        Pyramid.treasure = "true"
+    elif randomtreasures[x] == Sphinx.id:
+        Sphinx.treasure = "true"
+    elif randomtreasures[x] == ValleyoftheKings.id:
+        ValleyoftheKings.treasure = "true"
+    elif randomtreasures[x] == LondonEye.id:
+        LondonEye.treasure = "true"
+    elif randomtreasures[x] == StatueofLiberty.id:
+        StatueofLiberty.treasure = "true"
+    elif randomtreasures[x] == EiffelTower.id:
+        EiffelTower.treasure = "true"
+    elif randomtreasures[x] == NorthPole.id:
+        NorthPole.treasure = "true"
+    elif randomtreasures[x] == MountEverest.id:
+        MountEverest.treasure = "true"
+    elif randomtreasures[x] == StBasilsCathedral.id:
+        StBasilsCathedral.treasure = "true"
+
+window.mainloop()
