@@ -18,9 +18,9 @@ class landmarks:
         self.y2 = y2
         self.picture = picture
     def location(self, x1, y1, x2, y2, picture):
-        x1 = x1 + randint(0,580)
+        x1 = x1 + randint(0,500)
         x2 = x1 + 20
-        y1 = randint(0,780)
+        y1 = randint(0,700)
         y2 = y1 + 20
         canvas.create_image(x1,y1,image=picture,anchor=NW)
         self.x1 = x1
