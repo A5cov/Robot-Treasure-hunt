@@ -91,37 +91,37 @@ canvas.pack()
 #Image Library
 
 #-Pyramid
-image_urlPyramid = "http://i.imgur.com/8s4vk71.gif"
+image_urlPyramid = "http://i.imgur.com/DPm4BlQ.gif"
 image_bytPyramid = urlopen(image_urlPyramid).read()
 image_b64Pyramid = base64.encodestring(image_bytPyramid)
 Pyramid1 = tk.PhotoImage(data=image_b64Pyramid)
 
 #-Sphinx
-image_Sphinx= "http://i.imgur.com/CmbyDAQ.gif"
+image_Sphinx= "http://i.imgur.com/zBoh417.gif"
 image_bytSphinx = urlopen(image_Sphinx).read()
 image_b64Sphinx = base64.encodestring(image_bytSphinx)
 Sphinx1 = tk.PhotoImage(data=image_b64Sphinx)
 
 #-ValleyoftheKings
-image_Valley= "http://i.imgur.com/o8QEcar.gif"
+image_Valley= "http://i.imgur.com/nPSdVxM.gif"
 image_bytValley = urlopen(image_Valley).read()
 image_b64Valley = base64.encodestring(image_bytValley)
 Valley1 = tk.PhotoImage(data=image_b64Valley)
 
 #-LondonEye
-image_LondonEye= "http://corozal.com/imgs/smiley.10x10.gif"
+image_LondonEye= "http://i.imgur.com/tBZQWaw.gif"
 image_bytLondonEye = urlopen(image_LondonEye).read()
 image_b64LondonEye = base64.encodestring(image_bytLondonEye)
 LondonEye1 = tk.PhotoImage(data=image_b64LondonEye)
 
 #-StatueOfLiberty
-image_Statue = "http://corozal.com/imgs/smiley.10x10.gif"
+image_Statue = "http://i.imgur.com/RG3GrAP.gif"
 image_bytStatue = urlopen(image_Statue).read()
 image_b64Statue = base64.encodestring(image_bytStatue)
 Statue1 = tk.PhotoImage(data=image_b64Statue)
 
 #-Eiffel Tower
-image_Eiffel= "http://corozal.com/imgs/smiley.10x10.gif"
+image_Eiffel= "http://i.imgur.com/WU0Ij7U.gif"
 image_bytEiffel = urlopen(image_Eiffel).read()
 image_b64Eiffel = base64.encodestring(image_bytEiffel)
 Eiffel1 = tk.PhotoImage(data=image_b64Eiffel)
@@ -133,16 +133,17 @@ image_b64NorthPole = base64.encodestring(image_bytNorthPole)
 NorthPole1 = tk.PhotoImage(data=image_b64NorthPole)
 
 #-MountEverest
-image_Everest= "http://corozal.com/imgs/smiley.10x10.gif"
+image_Everest= "http://i.imgur.com/7rkkGcg.gif"
 image_bytEverest = urlopen(image_Everest).read()
 image_b64Everest = base64.encodestring(image_bytEverest)
 Everest1 = tk.PhotoImage(data=image_b64Everest)
 
 #-StBasilsCathedral
-image_Basil= "http://corozal.com/imgs/smiley.10x10.gif"
+image_Basil= "http://i.imgur.com/6ZK0fy3.gif"
 image_bytBasil = urlopen(image_Basil).read()
 image_b64Basil = base64.encodestring(image_bytBasil)
 Basil1 = tk.PhotoImage(data=image_b64Basil)
+
 
 LightOne = lights("LightOne", "Green", 0, 0, 0, 0)
 LightTwo = lights("LightTwo", "Green", 0, 0, 0, 0)
