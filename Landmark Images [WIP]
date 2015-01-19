@@ -127,7 +127,7 @@ image_b64Eiffel = base64.encodestring(image_bytEiffel)
 Eiffel1 = tk.PhotoImage(data=image_b64Eiffel)
 
 #-NorthPole
-image_NorthPole= "http://corozal.com/imgs/smiley.10x10.gif"
+image_NorthPole= "http://i.imgur.com/Jr3EISg.gif"
 image_bytNorthPole = urlopen(image_NorthPole).read()
 image_b64NorthPole = base64.encodestring(image_bytNorthPole)
 NorthPole1 = tk.PhotoImage(data=image_b64NorthPole)
