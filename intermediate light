@@ -260,33 +260,31 @@ while atdestination == False:
         LightColourOne = randint(1,3)
         if LightColourOne == 1:
             colour = "Green"
-            LightOne.CreateLight(880,380,920,420,colour)
+            LightOne.CreateLight(280,380,320,420,colour)
         elif LightColourOne == 2:
-            colour = "orange"
-            LightOne.CreateLight(880,380,920,420,colour)
+            colour = "Orange"
+            LightOne.CreateLight(280,380,320,420,colour)
         elif LightColourOne == 3:
             colour = "Red"
-            LightOne.CreateLight(880,380,920,420,colour)
-
+            LightOne.CreateLight(280,380,320,420,colour)
         
         LightColourTwo = randint(1,3)
         if LightColourTwo == 1:
             colour = "Green"
             LightTwo.CreateLight(880,380,920,420,colour)
         elif LightColourTwo == 2:
-            colour = "orange"
+            colour = "Orange"
             LightTwo.CreateLight(880,380,920,420,colour)
         elif LightColourTwo == 3:
             colour = "Red"
             LightTwo.CreateLight(880,380,920,420,colour)
-            
-            
-            LightColourThree = randint(1,3)
+    
+        LightColourThree = randint(1,3)
         if LightColourThree == 1:
             colour = "Green"
             LightThree.CreateLight(1480,380,1520,420,colour)
         elif LightColourThree == 2:
-            colour = "orange"
+            colour = "Orange"
             LightThree.CreateLight(1480,380,1520,420,colour)
         elif LightColourThree == 3:
             colour = "Red"
