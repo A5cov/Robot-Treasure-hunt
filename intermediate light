@@ -257,7 +257,7 @@ while atdestination == False:
         
     L = L + 1
     if L % 100 == 0:
-        LightColourOne = randint(1,3)
+        LightColourOne = randint(1,4)
         if LightColourOne == 1:
             colour = "Green"
             LightOne.CreateLight(280,380,320,420,colour)
@@ -284,7 +284,7 @@ while atdestination == False:
             colour = "Green"
             LightThree.CreateLight(1480,380,1520,420,colour)
         elif LightColourThree == 2:
-            colour = "Orange"
+            colour = "Green"
             LightThree.CreateLight(1480,380,1520,420,colour)
         elif LightColourThree == 3:
             colour = "Red"
@@ -300,7 +300,16 @@ while atdestination == False:
     else:
         Phil.RobotMove(Phil.x1,Phil.y1,Phil.x2,Phil.y2,Phil.position,Phil.direction)
         canvas.update()
-
+        
+    if LightColourOne == 3 and Sebastion.x1 > 0 and Sebastion.x1 < 580:
+        print ""
+    elif LightColourTwo == 3 and Sebastion.x1 > 600 and Sebastion.x1 < 1180:
+        print ""
+    elif LightColourThree == 3 and Sebastion.x1 > 1200:
+        print ""
+    else:
+        Sebastion.RobotMove(Sebastion.x1,Sebastion.y1,Sebastion.x2,Sebastion.y2,Sebastion.position,Sebastion.direction)
+        canvas.update()
     
             
 window.mainloop()
