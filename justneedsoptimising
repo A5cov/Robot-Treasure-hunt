@@ -1,0 +1,463 @@
+import time
+import random
+from random import randint
+from Tkinter import*
+import io
+import base64
+import Tkinter as tk
+from urllib2 import urlopen
+
+class landmarks:
+    def __init__(self, name, id, treasure, x1, x2, y1, y2, picture):
+        self.name = name
+        self.id = id
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        self.picture = picture
+    def location(self, x1, y1, x2, y2, picture):
+        x1 = x1 + randint(0,500)
+        x2 = x1 + 20
+        y1 = randint(0,700)
+        y2 = y1 + 20
+        canvas.create_image(x1,y1,image=picture,anchor=NW)
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        canvas.update()
+    def locationlabel(self, x1, y1, name, id, treasure):
+        label = Label(text=name, fg="black",bg="white").place(x=x1,y=y1)
+        label = Label(text="ID: " + str(id), fg="black",bg="white").place(x=x1,y=y1+21)
+        label = Label(text="Treasures: " + str(treasure), fg="black",bg="white").place(x=x1,y=y1+42)
+        
+class robots:
+    def __init__(self, name, treasure, x1, x2, y1, y2, position, direction):
+        self.name = name
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        self.position = position
+        self.direction = direction
+    def CreateRobot(self, x1, y1, x2, y2, position):
+        x1 = randint(0, 1780)
+        x2 = x1 + 20
+        y1 = randint(0, 780)
+        y2 = y1 + 20
+        self.position=canvas.create_rectangle(x1,y1,x2,y2,fill="blue",outline="black")
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        canvas.update()
+    def FoundTreasure(self, Amount):
+        self.treasure = self.treasure + Amount
+    def RobotMove(self, x1, y1, x2, y2, position, direction):
+        if direction == 0:
+            canvas.coords(position,x1-1,y1,x2-1,y2)
+            self.x1 = x1 - 1
+            self.x2 = x2 - 1
+            time.sleep(0.003)
+        elif direction == 1:
+            canvas.coords(position,x1,y1-1,x2,y2-1)
+            self.y1 = y1 - 1
+            self.y2 = y2 - 1
+            time.sleep(0.003)
+        elif direction == 2:
+            canvas.coords(position,x1+1,y1,x2+1,y2)
+            self.x1 = x1 + 1
+            self.x2 = x2 + 1
+            time.sleep(0.003)
+        elif direction == 3:
+            canvas.coords(position,x1,y1+1,x2,y2+1)
+            self.y1 = y1 + 1
+            self.y2 = y2 + 1
+            time.sleep(0.003)
+class lights:
+    def __init__(self, name, colour, x1, x2, y1, y2):
+        self.name = name
+        self.colour = colour
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateLight(self, x1, y1, x2, y2, colour):
+        canvas.create_rectangle(x1,y1,x2,y2,fill=colour,outline="dark"+colour)
+    def RedLight(self):
+        time.sleep(0.003)
+        
+window = Tk()
+canvas = Canvas(window, width=1800, height=850, bg='white')
+canvas.create_line(0,800,1800,800)
+canvas.create_line(900,800,900,850)
+labelPhilPoints = Label(text="Phil's Points: ", fg="black",bg="white").place(x=50,y=810)
+labelSebastionPoints = Label(text="Sebastion's Points: ", fg="black",bg="white").place(x=1750,y=810)    
+canvas.pack()
+        
+#Image Library
+#-Pyramid
+image_urlPyramid = "http://i.imgur.com/DPm4BlQ.gif"
+image_bytPyramid = urlopen(image_urlPyramid).read()
+image_b64Pyramid = base64.encodestring(image_bytPyramid)
+Pyramid1 = tk.PhotoImage(data=image_b64Pyramid)
+
+#-Sphinx
+image_Sphinx= "http://i.imgur.com/zBoh417.gif"
+image_bytSphinx = urlopen(image_Sphinx).read()
+image_b64Sphinx = base64.encodestring(image_bytSphinx)
+Sphinx1 = tk.PhotoImage(data=image_b64Sphinx)
+
+#-ValleyoftheKings
+image_Valley= "http://i.imgur.com/nPSdVxM.gif"
+image_bytValley = urlopen(image_Valley).read()
+image_b64Valley = base64.encodestring(image_bytValley)
+Valley1 = tk.PhotoImage(data=image_b64Valley)
+
+#-LondonEye
+image_LondonEye= "http://i.imgur.com/tBZQWaw.gif"
+image_bytLondonEye = urlopen(image_LondonEye).read()
+image_b64LondonEye = base64.encodestring(image_bytLondonEye)
+LondonEye1 = tk.PhotoImage(data=image_b64LondonEye)
+
+#-StatueOfLiberty
+image_Statue = "http://i.imgur.com/RG3GrAP.gif"
+image_bytStatue = urlopen(image_Statue).read()
+image_b64Statue = base64.encodestring(image_bytStatue)
+Statue1 = tk.PhotoImage(data=image_b64Statue)
+
+#-Eiffel Tower
+image_Eiffel= "http://i.imgur.com/WU0Ij7U.gif"
+image_bytEiffel = urlopen(image_Eiffel).read()
+image_b64Eiffel = base64.encodestring(image_bytEiffel)
+Eiffel1 = tk.PhotoImage(data=image_b64Eiffel)
+
+#-NorthPole
+image_NorthPole= "http://i.imgur.com/Jr3EISg.gif"
+image_bytNorthPole = urlopen(image_NorthPole).read()
+image_b64NorthPole = base64.encodestring(image_bytNorthPole)
+NorthPole1 = tk.PhotoImage(data=image_b64NorthPole)
+
+#-MountEverest
+image_Everest= "http://i.imgur.com/7rkkGcg.gif"
+image_bytEverest = urlopen(image_Everest).read()
+image_b64Everest = base64.encodestring(image_bytEverest)
+Everest1 = tk.PhotoImage(data=image_b64Everest)
+
+#-StBasilsCathedral
+image_Basil= "http://i.imgur.com/6ZK0fy3.gif"
+image_bytBasil = urlopen(image_Basil).read()
+image_b64Basil = base64.encodestring(image_bytBasil)
+Basil1 = tk.PhotoImage(data=image_b64Basil)
+
+LightOne = lights("LightOne", "Green", 0, 0, 0, 0)
+LightTwo = lights("LightTwo", "Green", 0, 0, 0, 0)
+LightThree = lights("LightThree", "Green", 0, 0, 0, 0)
+Phil = robots("Phil", 0, 0, 0, 0, 0, "", 0)
+Sebastion = robots("Sebastion", 0, 0, 0, 0, 0, "", 0)
+Pyramid = landmarks("Pyramid", 1, 0, 0, 0, 0, 0, Pyramid1)
+Sphinx = landmarks("Sphinx", 2, 0, 0, 0, 0, 0, Sphinx1)
+ValleyoftheKings = landmarks("Valley of the Kings", 3, 0, 0, 0, 0, 0, Valley1)
+LondonEye = landmarks("London Eye", 4, 0, 0, 0, 0, 0, LondonEye1)
+StatueofLiberty = landmarks("Statue of Liberty", 5, 0, 0, 0, 0, 0, Statue1)
+EiffelTower = landmarks("Eiffel Tower", 6, 0, 0, 0, 0, 0, Eiffel1)
+NorthPole = landmarks("North Pole", 7, 0, 0, 0, 0, 0, NorthPole1)
+MountEverest = landmarks("Mount Everest", 8, 0, 0, 0, 0, 0, Everest1)
+StBasilsCathedral = landmarks("St.Basil's Cathedral", 9, 0, 0, 0, 0, 0, Basil1)
+
+#Desert
+image_urldesert = "http://i.imgur.com/8Ui3Nn2.gif"
+image_bytdesert = urlopen(image_urldesert).read()
+image_b64desert = base64.encodestring(image_bytdesert)
+desert = tk.PhotoImage(data=image_b64desert)
+# City
+image_urlcity = "http://i.imgur.com/X6xnrbm.gif"
+image_bytcity = urlopen(image_urlcity).read()
+image_b64city = base64.encodestring(image_bytcity)
+city = tk.PhotoImage(data=image_b64city)
+#Snow
+image_urlsnow = "http://i.imgur.com/2ICSPuc.gif"
+image_bytsnow = urlopen(image_urlsnow).read()
+image_b64snow = base64.encodestring(image_bytsnow)
+snow = tk.PhotoImage(data=image_b64snow)
+
+canvas.create_line(600,800,600,0,fill="black",width=1)
+canvas.create_line(1200,800,1200,0,fill="black",width=1)
+
+canvas.create_image(0,0, image=desert, anchor=NW)
+canvas.create_image(600,0, image=city, anchor=NW)
+canvas.create_image(1200,0, image=snow, anchor=NW)
+
+canvas.update()
+
+colour = "Green"
+
+LightOne.CreateLight(280,380,320,420,colour)
+LightTwo.CreateLight(880,380,920,420,colour)
+LightThree.CreateLight(1480,380,1520,420,colour)
+Phil.CreateRobot(0,0,0,0, "")
+Sebastion.CreateRobot(0,0,0,0, "")
+Pyramid.location(0,0,0,0, Pyramid1)
+Sphinx.location(0,0,0,0, Sphinx1)
+ValleyoftheKings.location(0,0,0,0, Valley1)
+LondonEye.location(600,0,0,0, LondonEye1)
+StatueofLiberty.location(600,0,0,0, Statue1)
+EiffelTower.location(600,0,0,0, Eiffel1)
+NorthPole.location(1200,0,0,0, NorthPole1)
+MountEverest.location(1200,0,0,0, Everest1)
+StBasilsCathedral.location(1200,0,0,0, Basil1)
+randomtreasures=[]
+nodes=[0,1,2,3,4,5,6,7,8,9]
+length=8
+
+
+for x in range(0, 6):
+    y = randint(1, 9)
+    randomtreasures.append(y)
+    
+for x in range(0, 6):
+    if randomtreasures[x] == Pyramid.id:
+         Pyramid.treasure = Pyramid.treasure + 1
+    elif randomtreasures[x] == Sphinx.id:
+        Sphinx.treasure = Sphinx.treasure + 1
+    elif randomtreasures[x] == ValleyoftheKings.id:
+        ValleyoftheKings.treasure = ValleyoftheKings.treasure + 1
+    elif randomtreasures[x] == LondonEye.id:
+        LondonEye.treasure = LondonEye.treasure + 1
+    elif randomtreasures[x] == StatueofLiberty.id:
+        StatueofLiberty.treasure = StatueofLiberty.treasure + 1
+    elif randomtreasures[x] == EiffelTower.id:
+        EiffelTower.treasure = EiffelTower.treasure + 1
+    elif randomtreasures[x] == NorthPole.id:
+        NorthPole.treasure = NorthPole.treasure + 1
+    elif randomtreasures[x] == MountEverest.id:
+        MountEverest.treasure = MountEverest.treasure + 1
+    elif randomtreasures[x] == StBasilsCathedral.id:
+        StBasilsCathedral.treasure = StBasilsCathedral.treasure + 1
+        
+atdestination = False
+Sebastion.direction = 0
+PhilDestination = Pyramid
+SebastionDestination = Sphinx
+LightColourOne = 1
+LightColourTwo = 1
+LightColourThree = 1
+z = 0
+L = 0
+n = 0
+holder = 1
+
+while atdestination == False:
+    if Phil.x1 > PhilDestination.x1:
+        Phil.direction = 0
+    elif Phil.x1 < PhilDestination.x1:
+        Phil.direction = 2
+    elif Phil.y1 > PhilDestination.y1:
+        Phil.direction = 1
+    elif Phil.y2 < PhilDestination.y2:
+        Phil.direction = 3
+        
+    if Sebastion.x1 > SebastionDestination.x1:
+        Sebastion.direction = 0
+    elif Sebastion.x1 < SebastionDestination.x1:
+        Sebastion.direction = 2
+    elif Sebastion.y1 > SebastionDestination.y1:
+        Sebastion.direction = 1
+    elif Sebastion.y2 < SebastionDestination.y2:
+        Sebastion.direction = 3
+        
+    L = L + 1
+    if L % 100 == 0:
+        LightColourOne = randint(1,3)
+        if LightColourOne == 1:
+            colour = "Green"
+            LightOne.CreateLight(280,380,320,420,colour)
+        elif LightColourOne == 2:
+            colour = "Orange"
+            LightOne.CreateLight(280,380,320,420,colour)
+        elif LightColourOne == 3:
+            colour = "Red"
+            LightOne.CreateLight(280,380,320,420,colour)
+            
+        LightColourTwo = randint(1,3)
+        if LightColourTwo == 1:
+            colour = "Green"
+            LightTwo.CreateLight(880,380,920,420,colour)
+        elif LightColourTwo == 2:
+            colour = "Orange"
+            LightTwo.CreateLight(880,380,920,420,colour)
+        elif LightColourTwo == 3:
+            colour = "Red"
+            LightTwo.CreateLight(880,380,920,420,colour)
+            
+        LightColourThree = randint(1,3)
+        if LightColourThree == 1:
+            colour = "Green"
+            LightThree.CreateLight(1480,380,1520,420,colour)
+        elif LightColourThree == 2:
+            colour = "Orange"
+            LightThree.CreateLight(1480,380,1520,420,colour)
+        elif LightColourThree == 3:
+            colour = "Red"
+            LightThree.CreateLight(1480,380,1520,420,colour)
+            
+    if LightColourOne == 3 and Phil.x1 > 0 and Phil.x1 < 580:
+        LightOne.RedLight()
+    elif LightColourTwo == 3 and Phil.x1 > 600 and Phil.x1 < 1180:
+        LightTwo.RedLight()
+    elif LightColourThree == 3 and Phil.x1 > 1200:
+        LightThree.RedLight()
+    else:
+        Phil.RobotMove(Phil.x1,Phil.y1,Phil.x2,Phil.y2,Phil.position,Phil.direction)
+        canvas.update()
+        
+    if LightColourOne == 3 and Sebastion.x1 > 0 and Sebastion.x1 < 580:
+        LightOne.RedLight()
+    elif LightColourTwo == 3 and Sebastion.x1 > 600 and Sebastion.x1 < 1180:
+        LightTwo.RedLight()
+    elif LightColourThree == 3 and Sebastion.x1 > 1200:
+        LightThree.RedLight()
+    else:
+        Sebastion.RobotMove(Sebastion.x1,Sebastion.y1,Sebastion.x2,Sebastion.y2,Sebastion.position,Sebastion.direction)
+        canvas.update()
+        
+    if Phil.x1 == PhilDestination.x1 and Phil.y1 == PhilDestination.y1:
+        n = PhilDestination.id
+        nodes[n] = 0
+        if PhilDestination.id == Pyramid.id:
+            Pyramid.locationlabel(Pyramid.x1,Pyramid.y1,Pyramid.name,Pyramid.id,Pyramid.treasure)
+        elif PhilDestination.id == Sphinx.id:
+            Sphinx.locationlabel(Sphinx.x1,Sphinx.y1,Sphinx.name,Sphinx.id,Sphinx.treasure)
+        elif PhilDestination.id == ValleyoftheKings.id:
+            ValleyoftheKings.locationlabel(ValleyoftheKings.x1,ValleyoftheKings.y1,ValleyoftheKings.name,ValleyoftheKings.id,ValleyoftheKings.treasure)
+        elif PhilDestination.id == LondonEye.id:
+            LondonEye.locationlabel(LondonEye.x1,LondonEye.y1,LondonEye.name,LondonEye.id,LondonEye.treasure)
+        elif PhilDestination.id == EiffelTower.id:
+            EiffelTower.locationlabel(EiffelTower.x1,EiffelTower.y1,EiffelTower.name,EiffelTower.id,EiffelTower.treasure)
+        elif PhilDestination.id == StatueofLiberty.id:
+            StatueofLiberty.locationlabel(StatueofLiberty.x1,StatueofLiberty.y1,StatueofLiberty.name,StatueofLiberty.id,StatueofLiberty.treasure)
+        elif PhilDestination.id == StBasilsCathedral.id:
+            StBasilsCathedral.locationlabel(StBasilsCathedral.x1,StBasilsCathedral.y1,StBasilsCathedral.name,StBasilsCathedral.id,StBasilsCathedral.treasure)
+        elif PhilDestination.id == MountEverest.id:
+            MountEverest.locationlabel(MountEverest.x1,MountEverest.y1,MountEverest.name,MountEverest.id,MountEverest.treasure)
+        elif PhilDestination.id == NorthPole.id:
+            NorthPole.locationlabel(NorthPole.x1,NorthPole.y1,NorthPole.name,NorthPole.id,NorthPole.treasure)
+            
+        if PhilDestination.treasure > 0:
+            Amount = PhilDestination.treasure
+            Phil.FoundTreasure(Amount)
+            PhilDestination.treasure = 0
+            labelPhilsTreasure = Label(text=str(Phil.treasure), fg="black",bg="white").place(x=60,y=810)
+        x = True
+        z = 0
+        while x == True:
+            z = z + 1
+            n = randint(0, 9)
+            y = nodes[n]
+            if y == 0:
+                x = True
+                if z == 50:
+                    x = False
+            else:
+                x = False
+        if Pyramid.id == y:
+            PhilDestination = Pyramid
+        elif Sphinx.id == y:
+            PhilDestinaton = Sphinx
+        elif ValleyoftheKings.id == y:
+            PhilDestination = ValleyoftheKings
+        elif LondonEye.id == y:
+            PhilDestination = LondonEye
+        elif StatueofLiberty.id == y:
+            PhilDestination = StatueofLiberty
+        elif EiffelTower.id == y:
+            PhilDestination = EiffelTower
+        elif NorthPole.id == y:
+            PhilDestination = NorthPole
+        elif MountEverest.id == y:
+            PhilDestination = MountEverest
+        elif StBasilsCathedral.id == y:
+            PhilDestination = StBasilsCathedral
+            
+        
+    if Sebastion.x1 == SebastionDestination.x1 and Sebastion.y1 == SebastionDestination.y1:
+        n = SebastionDestination.id
+        nodes[n] = 0
+        if SebastionDestination.id == Pyramid.id:
+            Pyramid.locationlabel(Pyramid.x1,Pyramid.y1,Pyramid.name,Pyramid.id,Pyramid.treasure)
+        elif SebastionDestination.id == Sphinx.id:
+            Sphinx.locationlabel(Sphinx.x1,Sphinx.y1,Sphinx.name,Sphinx.id,Sphinx.treasure)
+        elif SebastionDestination.id == ValleyoftheKings.id:
+            ValleyoftheKings.locationlabel(ValleyoftheKings.x1,ValleyoftheKings.y1,ValleyoftheKings.name,ValleyoftheKings.id,ValleyoftheKings.treasure)
+        elif SebastionDestination.id == LondonEye.id:
+            LondonEye.locationlabel(LondonEye.x1,LondonEye.y1,LondonEye.name,LondonEye.id,LondonEye.treasure)
+        elif SebastionDestination.id == EiffelTower.id:
+            EiffelTower.locationlabel(EiffelTower.x1,EiffelTower.y1,EiffelTower.name,EiffelTower.id,EiffelTower.treasure)
+        elif SebastionDestination.id == StatueofLiberty.id:
+            StatueofLiberty.locationlabel(StatueofLiberty.x1,StatueofLiberty.y1,StatueofLiberty.name,StatueofLiberty.id,StatueofLiberty.treasure)
+        elif SebastionDestination.id == StBasilsCathedral.id:
+            StBasilsCathedral.locationlabel(StBasilsCathedral.x1,StBasilsCathedral.y1,StBasilsCathedral.name,StBasilsCathedral.id,StBasilsCathedral.treasure)
+        elif SebastionDestination.id == MountEverest.id:
+            MountEverest.locationlabel(MountEverest.x1,MountEverest.y1,MountEverest.name,MountEverest.id,MountEverest.treasure)
+        elif SebastionDestination.id == NorthPole.id:
+            NorthPole.locationlabel(NorthPole.x1,NorthPole.y1,NorthPole.name,NorthPole.id,NorthPole.treasure)
+            
+        if SebastionDestination.treasure > 0:
+            Amount = SebastionDestination.treasure
+            Sebastion.FoundTreasure(Amount)
+            SebastionDestination.treasure = 0
+            labelSebastionsTreasure = Label(text=str(Sebastion.treasure), fg="black",bg="white").place(x=1760,y=810)
+        z = 0
+        x = True
+        while x == True:
+            z = z + 1
+            n = randint(0, 9)
+            y = nodes[n]
+            if y == 0:
+                x = True
+                if z == 50:
+                    x = False
+            else:
+                x = False
+            
+        if Pyramid.id == y:
+            SebastionDestination = Pyramid
+        elif Sphinx.id == y:
+            SebastionDestinaton = Sphinx
+        elif ValleyoftheKings.id == y:
+            SebastionDestination = ValleyoftheKings
+        elif LondonEye.id == y:
+            SebastionDestination = LondonEye
+        elif StatueofLiberty.id == y:
+            SebastionDestination = StatueofLiberty
+        elif EiffelTower.id == y:
+            SebastionDestination = EiffelTower
+        elif NorthPole.id == y:
+            SebastionDestination = NorthPole
+        elif MountEverest.id == y:
+            SebastionDestination = MountEverest
+        elif StBasilsCathedral.id == y:
+            SebastionDestination = StBasilsCathedral
+
+        atdestination = True
+        for x in range(0, 9):
+            if nodes[x] > 0:
+                atdestination = False
+                
+
+
+if Sebastion.treasure > Phil.treasure:
+    print "Sebastion wins"
+    print Sebastion.treasure
+    print Phil.treasure
+else:
+    print "Phil wins"
+    print Phil.treasure
+    print Sebastion.treasure
+
+    
+window.mainloop()
+
