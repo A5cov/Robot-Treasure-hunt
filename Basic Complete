@@ -1,0 +1,226 @@
+import time
+import random
+from random import randint
+from Tkinter import*
+import io
+import base64
+import Tkinter as tk
+from urllib2 import urlopen
+
+class landmarks:
+    def __init__(self, name, id, treasure, x1, x2, y1, y2):
+        self.name = name
+        self.id = id
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def location(self, x1, y1, x2, y2):
+        x1 = x1 + 200
+        x2 = x1 + 20
+        y1 = y1 + 200
+        y2 = y1 + 20
+        canvas.create_rectangle(x1,y1,x2,y2,fill="purple",outline="black")
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        canvas.update()
+
+class robots:
+    def __init__(self, name, treasure, x1, x2, y1, y2, position, direction):
+        self.name = name
+        self.treasure = treasure
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        self.position = position
+        self.direction = direction
+    def CreateRobot(self, x1, y1, x2, y2, position):
+        x1 = x1 + 200
+        x2 = x1 + 20
+        y1 = y1 + 200
+        y2 = y1 + 20      
+        self.position=canvas.create_rectangle(x1,y1,x2,y2,fill="blue",outline="black")
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+        canvas.update()
+    def RobotMove(self, x1, y1, x2, y2, position, direction):
+        if direction == 0:                                                      # 0 #Direction of this is Left or West
+            canvas.coords(position,x1-1,y1,x2-1,y2)
+            self.x1 = x1 - 1
+            self.x2 = x2 - 1
+            time.sleep(0.003)
+        elif direction == 1:                                                     # 1 #Direction of this is Up or North
+            canvas.coords(position,x1,y1-1,x2,y2-1)
+            self.y1 = y1 - 1
+            self.y2 = y2 - 1
+            time.sleep(0.003)
+        elif direction == 2:                                                     # 2 #Direction of this is Right or East
+            canvas.coords(position,x1+1,y1,x2+1,y2)
+            self.x1 = x1 + 1
+            self.x2 = x2 + 1
+            time.sleep(0.003)
+        elif direction == 3:                                                      # 3 #Direction of this is Down or South
+            canvas.coords(position,x1,y1+1,x2,y2+1)
+            self.y1 = y1 + 1
+            self.y2 = y2 + 1
+            time.sleep(0.003)
+
+class lights:
+    def __init__(self, name, colour, x1, x2, y1, y2):
+        self.name = name
+        self.colour = colour
+        self.x1 = x1
+        self.x2 = x2
+        self.y1 = y1
+        self.y2 = y2
+    def CreateLight(self, x1, y1, x2, y2, colour):
+        canvas.create_rectangle(x1,y1,x2,y2,fill=colour,outline="dark"+colour)
+
+LightOne = lights("LightOne", "Green", 0, 0, 0, 0)
+LightTwo = lights("LightTwo", "Green", 0, 0, 0, 0)
+LightThree = lights("LightThree", "Green", 0, 0, 0, 0)
+Phil = robots("Phil", 0, 0, 0, 0, 0, "", 0)
+Pyramid = landmarks("Pyramid", 1, "false", 0, 0, 0, 0)
+Sphinx = landmarks("Sphinx", 2, "false", 0, 0, 0, 0)
+ValleyoftheKings = landmarks("Valley of the Kings", 3, "false", 0, 0, 0, 0)
+LondonEye = landmarks("London Eye", 4, "true", 0, 0, 0, 0)
+StatueofLiberty = landmarks("Statue of Liberty", 5, "false", 0, 0, 0, 0)
+EiffelTower = landmarks("Eiffel Tower", 6, "false", 0, 0, 0, 0)
+NorthPole = landmarks("North Pole", 7, "false", 0, 0, 0, 0)
+MountEverest = landmarks("Mount Everest", 8, "false", 0, 0, 0, 0)
+StBasilsCathedral = landmarks("St.Basil's Cathedral", 9, "false", 0, 0, 0, 0)
+
+window = Tk()
+canvas = Canvas(window, width=1800, height=800, bg='white')
+canvas.pack()
+
+#Desert
+image_urldesert = "http://i.imgur.com/8Ui3Nn2.gif"
+image_bytdesert = urlopen(image_urldesert).read()
+image_b64desert = base64.encodestring(image_bytdesert)
+desert = tk.PhotoImage(data=image_b64desert)
+# City
+image_urlcity = "http://i.imgur.com/X6xnrbm.gif"
+image_bytcity = urlopen(image_urlcity).read()
+image_b64city = base64.encodestring(image_bytcity)
+city = tk.PhotoImage(data=image_b64city)
+#Snow
+image_urlsnow = "http://i.imgur.com/2ICSPuc.gif"
+image_bytsnow = urlopen(image_urlsnow).read()
+image_b64snow = base64.encodestring(image_bytsnow)
+snow = tk.PhotoImage(data=image_b64snow)
+
+canvas.create_line(600,800,600,0,fill="black",width=1)
+canvas.create_line(1200,800,1200,0,fill="black",width=1)
+
+canvas.create_image(0,0, image=desert, anchor=NW)
+canvas.create_image(600,0, image=city, anchor=NW)
+canvas.create_image(1200,0, image=snow, anchor=NW)
+
+canvas.update()
+
+colour = "Green"
+
+LightOne.CreateLight(280,380,320,420,colour)
+LightTwo.CreateLight(880,380,920,420,colour)
+LightThree.CreateLight(1480,380,1520,420,colour)
+Phil.CreateRobot(0,0,0,0, "")
+
+Pyramid.location(100,400,0,0)
+Sphinx.location(300,20,0,0)
+ValleyoftheKings.location(5,200,0,0)
+
+LondonEye.location(800,40,0,0)
+StatueofLiberty.location(900,450,0,0)
+EiffelTower.location(700,310,0,0)
+
+NorthPole.location(1500,100,0,0)
+MountEverest.location(1300,500,0,0)
+StBasilsCathedral.location(1100,20,0,0)
+
+
+atdestination = False
+PhilDestination = Pyramid
+LightColourOne = 1
+LightColourTwo = 1
+LightColourThree = 1
+z = 0
+L = 0
+
+while atdestination == False:
+    if Phil.x1 > PhilDestination.x1:
+        Phil.direction = 0
+    elif Phil.x1 < PhilDestination.x1:
+        Phil.direction = 2
+    elif Phil.y1 > PhilDestination.y1:
+        Phil.direction = 1
+    elif Phil.y2 < PhilDestination.y2:
+        Phil.direction = 3
+        
+    L = L + 1
+    if L % 100 == 0:
+        LightColourOne = randint(1, 2)
+        if LightColourOne == 1:
+            colour = "Green"
+            LightOne.CreateLight(280,380,320,420,colour)
+            canvas.update()
+        elif LightColourOne == 2:
+            colour = "Red"
+            LightOne.CreateLight(280,380,320,420,colour)
+            canvas.update()
+
+        LightColourTwo = randint(1,2)
+        if LightColourTwo == 1:
+            colour = "Green"
+            LightTwo.CreateLight(880,380,920,420,colour)
+            canvas.update()
+        elif LightColourTwo == 2:
+            colour = "Red"
+            LightTwo.CreateLight(880,380,920,420,colour)
+            canvas.update()
+    
+        LightColourThree = randint(1,2)
+        if LightColourThree == 1:
+            colour = "Green"
+            LightThree.CreateLight(1480,380,1520,420,colour)
+            canvas.update()
+        elif LightColourThree == 2:
+            colour = "Red"
+            LightThree.CreateLight(1480,380,1520,420,colour)
+            canvas.update()
+
+    if LightColourOne == 2 and (Phil.x1 > 0 and Phil.x1 < 580):
+        print ""
+    elif LightColourTwo == 2 and (Phil.x1 > 600 and Phil.x1 < 1180):
+        print ""
+    elif LightColourThree == 2 and (Phil.x1 > 1200):
+        print ""
+    else:
+        Phil.RobotMove(Phil.x1,Phil.y1,Phil.x2,Phil.y2,Phil.position,Phil.direction)
+        canvas.update()
+
+    
+
+    if Phil.x1 == PhilDestination.x1 and Phil.y1 == PhilDestination.y1:
+        if z == 0:
+            PhilDestination = Sphinx
+        elif z == 1:
+            PhilDestination = StBasilsCathedral
+        elif z == 2:
+            PhilDestination = EiffelTower
+        elif z == 3:
+            PhilDestination = LondonEye
+        z = z + 1
+        if z == 5:
+            atdestination = True
+
+print "Treasure Found at London Eye"
+window.mainloop()
+
+
