@@ -152,6 +152,7 @@ LightColourTwo = 1
 LightColourThree = 1
 z = 0
 L = 0
+Shoe = 0
 
 while atdestination == False:
     if Phil.x1 > PhilDestination.x1:
@@ -208,11 +209,11 @@ while atdestination == False:
             canvas.update()
 
     if LightColourOne == 3 and (Phil.x1 > 0 and Phil.x1 < 580):
-        print ""
+        Shoe = 1
     elif LightColourTwo == 3 and (Phil.x1 > 600 and Phil.x1 < 1180):
-        print ""
+        Shoe = 1
     elif LightColourThree == 3 and (Phil.x1 > 1200):
-        print ""
+        Shoe = 1
     else:
         Phil.RobotMove(Phil.x1,Phil.y1,Phil.x2,Phil.y2,Phil.position,Phil.direction)
         canvas.update()
@@ -221,24 +222,28 @@ while atdestination == False:
     if Phil.x1 == PhilDestination.x1 and Phil.y1 == PhilDestination.y1:
         if z == 0:
             PhilDestination = ValleyoftheKings
-            print "Treasure Found"
+            print "Treasure Found at Valley of the Kings" 
         elif z == 1:
             PhilDestination = StBasilsCathedral
+            print "Searching ... No Treasure at St Basils Cathedral"
         elif z == 2:
             PhilDestination = MountEverest
-            print "Treasure Found"
+            print "Treasure Found at Mount Everest"
         elif z == 3:
             PhilDestination = EiffelTower
+            print "Searching ... No Treasure at Eiffel Tower"
         elif z == 4:
             PhilDestination = Sphinx
+            print "Searching ... No Treasure at Sphinx"
         elif z == 5:
             PhilDestination = NorthPole
-            print "Treasure Found"
+            print "Treasure Found at North Pole"
         elif z == 6:
             PhilDestination = LondonEye
-            print "Treasure Found"
+            print "Treasure Found at London Eye"
         elif z == 7:
             PhilDestination = StatueofLiberty
+            print "Searching ... No Treasure at the Statue of Liberty"
             
         z = z + 1
         if z == 7:
