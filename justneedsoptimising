@@ -34,7 +34,7 @@ class landmarks:
         label = Label(text="Treasures: " + str(treasure), fg="black",bg="white").place(x=x1,y=y1+42)
         
 class robots:
-    def __init__(self, name, treasure, x1, x2, y1, y2, position, direction):
+    def __init__(self, name, treasure, x1, x2, y1, y2, position, direction, RobotColour):
         self.name = name
         self.treasure = treasure
         self.x1 = x1
@@ -43,12 +43,13 @@ class robots:
         self.y2 = y2
         self.position = position
         self.direction = direction
-    def CreateRobot(self, x1, y1, x2, y2, position):
+        self.RobotColour = RobotColour
+    def CreateRobot(self, x1, y1, x2, y2, position, RobotColour):
         x1 = randint(0, 1780)
         x2 = x1 + 20
         y1 = randint(0, 780)
         y2 = y1 + 20
-        self.position=canvas.create_rectangle(x1,y1,x2,y2,fill="blue",outline="black")
+        self.position=canvas.create_rectangle(x1,y1,x2,y2,fill=RobotColour,outline="black")
         self.x1 = x1
         self.x2 = x2
         self.y1 = y1
@@ -95,7 +96,7 @@ canvas = Canvas(window, width=1800, height=850, bg='white')
 canvas.create_line(0,800,1800,800)
 canvas.create_line(900,800,900,850)
 labelPhilPoints = Label(text="Phil's Points: ", fg="black",bg="white").place(x=50,y=810)
-labelSebastionPoints = Label(text="Sebastion's Points: ", fg="black",bg="white").place(x=1750,y=810)    
+labelSebastionPoints = Label(text="Sebastion's Points: ", fg="black",bg="white").place(x=950,y=810)    
 canvas.pack()
         
 #Image Library
@@ -156,8 +157,8 @@ Basil1 = tk.PhotoImage(data=image_b64Basil)
 LightOne = lights("LightOne", "Green", 0, 0, 0, 0)
 LightTwo = lights("LightTwo", "Green", 0, 0, 0, 0)
 LightThree = lights("LightThree", "Green", 0, 0, 0, 0)
-Phil = robots("Phil", 0, 0, 0, 0, 0, "", 0)
-Sebastion = robots("Sebastion", 0, 0, 0, 0, 0, "", 0)
+Phil = robots("Phil", 0, 0, 0, 0, 0, "", 0, "Blue")
+Sebastion = robots("Sebastion", 0, 0, 0, 0, 0, "", 0, "Yellow")
 Pyramid = landmarks("Pyramid", 1, 0, 0, 0, 0, 0, Pyramid1)
 Sphinx = landmarks("Sphinx", 2, 0, 0, 0, 0, 0, Sphinx1)
 ValleyoftheKings = landmarks("Valley of the Kings", 3, 0, 0, 0, 0, 0, Valley1)
@@ -198,8 +199,8 @@ colour = "Green"
 LightOne.CreateLight(280,380,320,420,colour)
 LightTwo.CreateLight(880,380,920,420,colour)
 LightThree.CreateLight(1480,380,1520,420,colour)
-Phil.CreateRobot(0,0,0,0, "")
-Sebastion.CreateRobot(0,0,0,0, "")
+Phil.CreateRobot(0,0,0,0, "", "Blue")
+Sebastion.CreateRobot(0,0,0,0, "", "Yellow")
 Pyramid.location(0,0,0,0, Pyramid1)
 Sphinx.location(0,0,0,0, Sphinx1)
 ValleyoftheKings.location(0,0,0,0, Valley1)
@@ -433,7 +434,7 @@ while atdestination == False:
             Amount = PhilDestination.treasure
             Phil.FoundTreasure(Amount)
             PhilDestination.treasure = 0
-            labelPhilsTreasure = Label(text=str(Phil.treasure), fg="black",bg="white").place(x=60,y=810)
+            labelPhilsTreasure = Label(text=str(Phil.treasure), fg="black",bg="white").place(x=130,y=810)
         x = True
         z = 0
         while x == True:
@@ -492,7 +493,7 @@ while atdestination == False:
             Amount = SebastionDestination.treasure
             Sebastion.FoundTreasure(Amount)
             SebastionDestination.treasure = 0
-            labelSebastionsTreasure = Label(text=str(Sebastion.treasure), fg="black",bg="white").place(x=1760,y=810)
+            labelSebastionsTreasure = Label(text=str(Sebastion.treasure), fg="black",bg="white").place(x=1070,y=810)
         z = 0
         x = True
         while x == True:
@@ -543,4 +544,3 @@ else:
 
     
 window.mainloop()
-
