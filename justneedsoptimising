@@ -213,67 +213,112 @@ randomtreasures=[]
 nodes=[0,1,2,3,4,5,6,7,8,9]
 length=8
 
+PyramidWeb = "http://i.imgur.com/kCXZTG0.gif"
+PyramidWeb1 = urlopen(PyramidWeb).read()
+PyramidWeb2 = base64.encodestring(PyramidWeb1)
+PyrWeb = tk.PhotoImage(data=PyramidWeb2)
+
+SphinxWeb = "http://i.imgur.com/WEDp052.gif"
+SphinxWeb1 = urlopen(SphinxWeb).read()
+SphinxWeb2 = base64.encodestring(SphinxWeb1)
+SphinxWeb = tk.PhotoImage(data=SphinxWeb2)
+
+ValleyWeb = "http://i.imgur.com/0Uv6PW0.gif"
+ValleyWeb1 = urlopen(ValleyWeb).read()
+ValleyWeb2 = base64.encodestring(ValleyWeb1)
+KingWeb = tk.PhotoImage(data=ValleyWeb2)
+
+StatueWeb = "http://i.imgur.com/Oh38t1i.gif"
+StatueWeb1 = urlopen(StatueWeb).read()
+StatueWeb2 = base64.encodestring(StatueWeb1)
+LibertyWeb = tk.PhotoImage(data=StatueWeb2)
+
+EiffelWeb = "http://i.imgur.com/nKowIMe.gif"
+EiffelWeb1 = urlopen(EiffelWeb).read()
+EiffelWeb2 = base64.encodestring(EiffelWeb1)
+TowerWeb = tk.PhotoImage(data=EiffelWeb2)
+
+LondonWeb = "http://i.imgur.com/6yCXN2m.gif"
+LondonWeb1 = urlopen(LondonWeb).read()
+LondonWeb2 = base64.encodestring(LondonWeb1)
+EyeWeb = tk.PhotoImage(data=LondonWeb2)
+
+EverestWeb = "http://i.imgur.com/ddHxgDV.gif"
+EverestWeb1 = urlopen(EverestWeb).read()
+EverestWeb2 = base64.encodestring(EverestWeb1)
+MountWeb = tk.PhotoImage(data=EverestWeb2)
+
+NorthWeb = "http://i.imgur.com/KjqWwc7.gif"
+NorthWeb1 = urlopen(NorthWeb).read()
+NorthWeb2 = base64.encodestring(NorthWeb1)
+PoleWeb = tk.PhotoImage(data=NorthWeb2)
+
+StBasilsWeb = "http://i.imgur.com/dU3axfM.gif"
+StBasilsWeb1 = urlopen(StBasilsWeb).read()
+StBasilsWeb2 = base64.encodestring(StBasilsWeb1)
+BasilWeb = tk.PhotoImage(data=StBasilsWeb2)
+
 def PyramidWindow():
     Webs = Toplevel()
     Webs.title("Pyramid Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Pyramid1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=PyrWeb, anchor=NW)
     Web.pack()
     Web.update()
 def SphinxWindow():
     Webs = Toplevel()
     Webs.title("Sphinx Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Sphinx1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=SphinxWeb, anchor=NW)
     Web.pack()
     Web.update()
 def ValleyWindow():
     Webs = Toplevel()
     Webs.title("Valley of the Kings Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Valley1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=KingWeb, anchor=NW)
     Web.pack()
     Web.update()
 def LondonEyeWindow():
     Webs = Toplevel()
     Webs.title("London Eye Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=LondonEye1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=EyeWeb, anchor=NW)
     Web.pack()
     Web.update()
 def EiffelTowerWindow():
     Webs = Toplevel()
     Webs.title("Eiffel Tower Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Eiffel1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=TowerWeb, anchor=NW)
     Web.pack()
     Web.update()
 def StatueofLibertyWindow():
     Webs = Toplevel()
     Webs.title("Statue of Liberty Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Statue1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=LibertyWeb, anchor=NW)
     Web.pack()
     Web.update()
 def MountEverestWindow():
     Webs = Toplevel()
     Webs.title("Mount Everest Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Everest1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=MountWeb, anchor=NW)
     Web.pack()
     Web.update()
 def NorthPoleWindow():
     Webs = Toplevel()
     Webs.title("North Pole Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=NorthPole1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=PoleWeb, anchor=NW)
     Web.pack()
     Web.update()
 def StBasilsCathedralWindow():
     Webs = Toplevel()
     Webs.title("St Basils Cathedral Information")
-    Web = Canvas(Webs, width=500, height=500, bg='white')
-    Web.create_image(100,100,image=Basil1,anchor=NW)
+    Web = Canvas(Webs, width=1900, height=1080, bg='white')
+    Web.create_image(0,0,image=BasilWeb, anchor=NW)
     Web.pack()
     Web.update()
 
@@ -295,7 +340,6 @@ buttonU=Button(window,text="North Pole Info", command=NorthPoleWindow)
 buttonU.pack(side=LEFT)
 buttonI=Button(window,text="StBasilsCathedral Info", command=StBasilsCathedralWindow)
 buttonI.pack(side=LEFT)
-
 
 for x in range(0, 6):
     y = randint(1, 9)
